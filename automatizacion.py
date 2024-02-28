@@ -27,8 +27,8 @@ def proceso():
         fecha_maxima = str(df["Fecha término"].max())
         with open(f'archivo_{fecha_maxima}.txt', 'w') as archivo:
         # Escribe en el archivo
-            archivo.write('Error')           
-
+            archivo.write('Error')     
+                 
 if __name__ == '__main__':
     print("Cerradas...")
     proceso()

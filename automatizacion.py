@@ -28,6 +28,7 @@ def proceso():
         with open(f'archivo_{fecha_maxima}.txt', 'w') as archivo:
         # Escribe en el archivo
             archivo.write('Error')
+            
 
 
 if __name__ == '__main__':

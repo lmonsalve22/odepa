@@ -1,0 +1,46 @@
+name: Descarga ODEPA
+# Controls when the workflow will run
+on:
+
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 0 * * sat'
+  #  - cron:  '50 17 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: AUTOMATIZACIÓN
+      run: |
+        echo "Actions Publicadas, Cerradas"
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        echo "Vamos a lo importante..."
+        python automatizacion.py
+       
+
+    - uses: stefanzweifel/git-auto-commit-action@v2
+      with:
+        commit_message: "Actualizacion"
+        branch: main
+        # Optional glob pattern of files which should be added to the commit
+        #file_pattern: /
+        # Optional local file path to the repository
+        repository: .
+
+        # Optional commit user and author settings
+        commit_user_name: Actions Bot
+        commit_user_email: lmonsalve22@gmail.com
+        commit_author: DataIntelligence BOT <lmonsalve22@gmail.com>
+        push_options: '--force'

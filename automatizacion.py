@@ -16,8 +16,8 @@ def proceso():
     del df["sector"]
     columnas = ["Semana","Fecha inicio","Fecha término","Región","Tipo punto monitoreo","Producto","Variedad","Calidad","Unidad","Precio mínimo","Precio máximo","Precio promedio"]
     df.columns = columnas
-    df["Fecha inicio"]  = df["Fecha inicio"] .apply(lambda x:datetime.datetime.fromtimestamp(x / 1000))
-    df["Fecha término"] = df["Fecha término"].apply(lambda x:datetime.datetime.fromtimestamp(x / 1000))
+    df["Fecha inicio"]  = df["Fecha inicio"] .apply(lambda x:datetime.datetime.fromtimestamp(x / 1000).strftime("%d-%m-%Y 0:00:00"))
+    df["Fecha término"] = df["Fecha término"].apply(lambda x:datetime.datetime.fromtimestamp(x / 1000).strftime("%d-%m-%Y 0:00:00"))
     df["Precio promedio"] = df["Precio promedio"].round(0)
     ref2 = pd.read_excel("producto_tipo.xlsx")
     merge = df.merge(ref2)
@@ -28,7 +28,7 @@ def proceso():
         with open(f'archivo_{fecha_maxima}.txt', 'w') as archivo:
         # Escribe en el archivo
             archivo.write('Error')     
-                 
+
 if __name__ == '__main__':
     print("Cerradas...")
     proceso()

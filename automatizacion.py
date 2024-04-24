@@ -22,6 +22,7 @@ def proceso():
     ref2 = pd.read_excel("producto_tipo.xlsx")
     merge = df.merge(ref2)
     if(len(df) == len(merge)):
+        
         merge.to_excel("ODEPA Precios al Consumidor_2024.xlsx", index=False)
     else:
         fecha_maxima = str(df["Fecha término"].max())
